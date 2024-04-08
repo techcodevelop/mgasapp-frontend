@@ -1,0 +1,60 @@
+<div class="wrapper">
+  <div *ngIf="!loading" class="body">
+    <img class="logo" src="../../../assets/img/padlock.png" alt="img-login" />
+    <h3>Register User</h3>
+
+    <form
+      [formGroup]="contactForm"
+      class="row g-3 needs-validation"
+      novalidate
+      (submit)="enviar($event)"
+    >
+      <div class="form-floating mb-3 mt-3">
+        <input  formControlName="username" type="text" class="form-control" placeholder="Ingrese usuario" 
+        [ngClass]="{'is-invalid' : hasErrors('username','required') || hasErrors('message','minlength')}"
+        />
+        <label>Username</label>
+        @if(hasErrors('username','required')){
+          <span class="text-danger">You have to complete this field</span>
+        }
+        @if(hasErrors('username','minlength')){
+          <h6><span class="text-danger">You have to write at least 6 characters</span></h6>
+        }
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+        formControlName="password"
+          type="password"
+          class="form-control"
+          placeholder="Ingrese password de nuevo"
+        />
+        <label>Password</label>
+      </div>
+
+      <div class="form-floating mb-3">
+        <input
+        formControlName="confirmPassword"
+          type="password"
+          class="form-control"
+          placeholder="Ingrese password"
+        />
+        <label>Repeat password</label>
+      </div>
+
+      <div class="d-grid gap-2 mb-3">
+        <button
+          type="button"
+          (click)="addUser('username','password','confirmPassword')"
+          class="btn btn-primary btn-lg"
+        
+        >
+          Aceptar
+        </button>
+      </div>
+    </form>
+
+    <a routerLink="/">Return</a>
+  </div>
+  <app-spinner *ngIf="loading"></app-spinner>
+</div>
