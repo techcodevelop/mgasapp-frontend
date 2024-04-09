@@ -13,10 +13,10 @@ import { addTokenInterceptor } from './utils/add-token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers:
-    [
+    [ // provideHttpClient(withInterceptors([addTokenInterceptor])), 
       provideRouter(routes),
-      //provideHttpClient(),// para injecciones http
-      provideHttpClient(withInterceptors([addTokenInterceptor])), 
+     provideHttpClient(),// para injecciones http
+    
       provideClientHydration(),
       provideAnimations(),
       provideToastr({ timeOut: 3000, positionClass: 'toast-top-right', preventDuplicates: true })
